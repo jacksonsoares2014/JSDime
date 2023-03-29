@@ -93,6 +93,18 @@ const
   itemQuadro14SaldoCredorAntecipacoesMesSeguinte  = '198';
   itemQuadro14ImpostoRecolherUtilCredPre          = '199';
 
+  itemQuadro16SomaValorDevidoFUMDES               = '010';
+  itemQuadro16SaldoCredorFUMDESMesAnterior        = '020';
+  itemQuadro16SomaValorFUMDESDevolucao            = '030';
+  itemQuadro16SaldoCredorMesSeguinteFUMDES        = '098';
+  itemQuadro16FUMDESRecolher                      = '099';
+  itemQuadro16SomaValorDevidoFUNDOSOCIAL          = '110';
+  itemQuadro16SaldoCredorFUNDOSOCIALMesAnterior   = '120';
+  itemQuadro16SomaValoresFUNDOSOCIALDevolucao     = '130';
+  itemQuadro16SaldoCredorMesSeguinteFUNDOSOCIAL   = '198';
+  itemQuadro16FUNDOSOCIALRecolher                 = '199';
+
+
 implementation
 
 end.

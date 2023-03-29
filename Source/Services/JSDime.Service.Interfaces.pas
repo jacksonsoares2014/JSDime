@@ -81,6 +81,8 @@ type
     function AddRegistro32Quadro11(Value: IJSDimeDAORegistro32Quadro11): IJSDimeDAOCollection;
     function AddRegistro33Quadro12(Value: IJSDimeDAORegistro33Quadro12): IJSDimeDAOCollection;
     function AddRegistro35Quadro14(Value: IJSDimeDAORegistro35Quadro14): IJSDimeDAOCollection;
+    function AddRegistro36Quadro15(Value: IJSDimeDAORegistro36Quadro15): IJSDimeDAOCollection;
+    function AddRegistro37Quadro16(Value: IJSDimeDAORegistro37Quadro16): IJSDimeDAOCollection;
     function AddRegistro46Quadro46(Value: IJSDimeDAORegistro46Quadro46): IJSDimeDAOCollection;
 
 //    function AddRegistro47Quadro47(Value: IJSDimeDAORegistro47Quadro47): IJSDimeDAOCollection;
@@ -91,6 +93,7 @@ type
     function AddRegistro82Quadro82(Value: IJSDimeDAORegistro82Quadro82): IJSDimeDAOCollection;
     function AddRegistro83Quadro83(Value: IJSDimeDAORegistro83Quadro83): IJSDimeDAOCollection;
     function AddRegistro84Quadro84(Value: IJSDimeDAORegistro84Quadro84): IJSDimeDAOCollection;
+    function AddRegistro85Quadro85(Value: IJSDimeDAORegistro85Quadro85): IJSDimeDAOCollection;
 
     function DAORegistro20        : IJSDimeDAORegistro20;
     function DAORegistro22Quadro01: IJSDimeDAORegistro22Quadro01;
@@ -101,6 +104,8 @@ type
     function DAORegistro32Quadro11: IJSDimeDAORegistro32Quadro11;
     function DAORegistro33Quadro12: IJSDimeDAORegistro33Quadro12;
     function DAORegistro35Quadro14: IJSDimeDAORegistro35Quadro14;
+    function DAORegistro36Quadro15: IJSDimeDAORegistro36Quadro15;
+    function DAORegistro37Quadro16: IJSDimeDAORegistro37Quadro16;
     function DAORegistro46Quadro46: IJSDimeDAORegistro46Quadro46;
 
 //    function DAORegistro47Quadro47: IJSDimeDAORegistro47Quadro47;
@@ -111,6 +116,7 @@ type
     function DAORegistro82Quadro82: IJSDimeDAORegistro82Quadro82;
     function DAORegistro83Quadro83: IJSDimeDAORegistro83Quadro83;
     function DAORegistro84Quadro84: IJSDimeDAORegistro84Quadro84;
+    function DAORegistro85Quadro85: IJSDimeDAORegistro85Quadro85;
 
     function &Begin: IJSDimeDAOCollection;
     function &End: IJSDimeService;

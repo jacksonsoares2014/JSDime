@@ -61,6 +61,8 @@ begin
   FExports.Add('32', TJSDimeExportRegistro32.New(FEmitente, FConfig));
   FExports.Add('33', TJSDimeExportRegistro33.New(FEmitente, FConfig));
   FExports.Add('35', TJSDimeExportRegistro35.New(FEmitente, FConfig));
+  FExports.Add('36', TJSDimeExportRegistro36.New(FEmitente, FConfig));
+  FExports.Add('37', TJSDimeExportRegistro37.New(FEmitente, FConfig));
   FExports.Add('46', TJSDimeExportRegistro46.New(FEmitente, FConfig));
   FExports.Add('49', TJSDimeExportRegistro49.New(FEmitente, FConfig));
   FExports.Add('50', TJSDimeExportRegistro50.New(FEmitente, FConfig));
@@ -69,6 +71,7 @@ begin
   FExports.Add('82', TJSDimeExportRegistro82.New(FEmitente, FConfig));
   FExports.Add('83', TJSDimeExportRegistro83.New(FEmitente, FConfig));
   FExports.Add('84', TJSDimeExportRegistro84.New(FEmitente, FConfig));
+  FExports.Add('85', TJSDimeExportRegistro85.New(FEmitente, FConfig));
   FExports.Add('98', TJSDimeExportRegistro98.New(FEmitente, FConfig));
   FExports.Add('99', TJSDimeExportRegistro99.New(FEmitente, FConfig));
 end;

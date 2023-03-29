@@ -18,6 +18,8 @@ uses
   JSDime.Model.Registro32,
   JSDime.Model.Registro33,
   JSDime.Model.Registro35,
+  JSDime.Model.Registro36,
+  JSDime.Model.Registro37,
   JSDime.Model.Registro46,
   JSDime.Model.Registro47,
   JSDime.Model.Registro49,
@@ -27,6 +29,7 @@ uses
   JSDime.Model.Registro82,
   JSDime.Model.Registro83,
   JSDime.Model.Registro84,
+  JSDime.Model.Registro85,
   JSDime.Model.Registro98,
   JSDime.Model.Registro99;
 
@@ -46,6 +49,8 @@ type
   TJSDimeModelRegistro32   = JSDime.Model.Registro32.TJSDimeModelRegistro32;
   TJSDimeModelRegistro33   = JSDime.Model.Registro33.TJSDimeModelRegistro33;
   TJSDimeModelRegistro35   = JSDime.Model.Registro35.TJSDimeModelRegistro35;
+  TJSDimeModelRegistro36   = JSDime.Model.Registro36.TJSDimeModelRegistro36;
+  TJSDimeModelRegistro37   = JSDime.Model.Registro37.TJSDimeModelRegistro37;
   TJSDimeModelRegistro46   = JSDime.Model.Registro46.TJSDimeModelRegistro46;
   TJSDimeModelRegistro47   = JSDime.Model.Registro47.TJSDimeModelRegistro47;
   TJSDimeModelRegistro49   = JSDime.Model.Registro49.TJSDimeModelRegistro49;
@@ -55,6 +60,7 @@ type
   TJSDimeModelRegistro82   = JSDime.Model.Registro82.TJSDimeModelRegistro82;
   TJSDimeModelRegistro83   = JSDime.Model.Registro83.TJSDimeModelRegistro83;
   TJSDimeModelRegistro84   = JSDime.Model.Registro84.TJSDimeModelRegistro84;
+  TJSDimeModelRegistro85   = JSDime.Model.Registro85.TJSDimeModelRegistro85;
   TJSDimeModelRegistro98   = JSDime.Model.Registro98.TJSDimeModelRegistro98;
   TJSDimeModelRegistro99   = JSDime.Model.Registro99.TJSDimeModelRegistro99;
 

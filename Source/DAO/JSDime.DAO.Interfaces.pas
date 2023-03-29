@@ -51,6 +51,16 @@ type
     function list(DataInicial: TDateTime): TObjectList<TJSDimeModelRegistro35>;
   end;
 
+  IJSDimeDAORegistro36Quadro15 = interface
+    ['{510E66FA-D5AF-4B54-84A3-4AF59E94C755}']
+    function listReg36(DataInicial: TDateTime): TObjectList<TJSDimeModelRegistro36>;
+  end;
+
+  IJSDimeDAORegistro37Quadro16 = interface
+    ['{99C91ED5-1550-445F-A5E5-4CA0BEC3906F}']
+    function listReg37: TObjectList<TJSDimeModelRegistro37>;
+  end;
+
   IJSDimeDAORegistro46Quadro46 = interface
     ['{ADF435BD-2204-409B-A8A4-FE3BE56289C4}']
     function list(DataInicial: TDateTime): TObjectList<TJSDimeModelRegistro46>;
@@ -89,6 +99,11 @@ type
   IJSDimeDAORegistro84Quadro84 = interface
     ['{16BBDCB9-3BDB-4EAE-801F-1F1ED1CF9B80}']
     function listReg84(Ano: Integer; Mes: String): TObjectList<TJSDimeModelRegistro84>;
+  end;
+
+  IJSDimeDAORegistro85Quadro85 = interface
+    ['{B894D6AD-2CFF-4F2E-BEC3-0F0E4745D23A}']
+    function listReg85(Ano: Integer; Mes: String): TObjectList<TJSDimeModelRegistro85>;
   end;
 
 implementation

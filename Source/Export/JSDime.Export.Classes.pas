@@ -14,6 +14,8 @@ uses
   JSDime.Export.Registro32,
   JSDime.Export.Registro33,
   JSDime.Export.Registro35,
+  JSDime.Export.Registro36,
+  JSDime.Export.Registro37,
   JSDime.Export.Registro46,
   JSDime.Export.Registro49,
   JSDime.Export.Registro50,
@@ -22,6 +24,7 @@ uses
   JSDime.Export.Registro82,
   JSDime.Export.Registro83,
   JSDime.Export.Registro84,
+  JSDime.Export.Registro85,
   JSDime.Export.Registro98,
   JSDime.Export.Registro99;
 
@@ -37,6 +40,8 @@ type
   TJSDimeExportRegistro32 = JSDime.Export.Registro32.TJSDimeExportRegistro32;
   TJSDimeExportRegistro33 = JSDime.Export.Registro33.TJSDimeExportRegistro33;
   TJSDimeExportRegistro35 = JSDime.Export.Registro35.TJSDimeExportRegistro35;
+  TJSDimeExportRegistro36 = JSDime.Export.Registro36.TJSDimeExportRegistro36;
+  TJSDimeExportRegistro37 = JSDime.Export.Registro37.TJSDimeExportRegistro37;
   TJSDimeExportRegistro46 = JSDime.Export.Registro46.TJSDimeExportRegistro46;
   TJSDimeExportRegistro49 = JSDime.Export.Registro49.TJSDimeExportRegistro49;
   TJSDimeExportRegistro50 = JSDime.Export.Registro50.TJSDimeExportRegistro50;
@@ -45,6 +50,7 @@ type
   TJSDimeExportRegistro82 = JSDime.Export.Registro82.TJSDimeExportRegistro82;
   TJSDimeExportRegistro83 = JSDime.Export.Registro83.TJSDimeExportRegistro83;
   TJSDimeExportRegistro84 = JSDime.Export.Registro84.TJSDimeExportRegistro84;
+  TJSDimeExportRegistro85 = JSDime.Export.Registro85.TJSDimeExportRegistro85;
   TJSDimeExportRegistro98 = JSDime.Export.Registro98.TJSDimeExportRegistro98;
   TJSDimeExportRegistro99 = JSDime.Export.Registro99.TJSDimeExportRegistro99;
 

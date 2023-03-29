@@ -21,6 +21,8 @@ type
     FDAORegistro32Quadro11: IJSDimeDAORegistro32Quadro11;
     FDAORegistro33Quadro12: IJSDimeDAORegistro33Quadro12;
     FDAORegistro35Quadro14: IJSDimeDAORegistro35Quadro14;
+    FDAORegistro36Quadro15: IJSDimeDAORegistro36Quadro15;
+    FDAORegistro37Quadro16: IJSDimeDAORegistro37Quadro16;
     FDAORegistro46Quadro46: IJSDimeDAORegistro46Quadro46;
     FDAORegistro49Quadro49: IJSDimeDAORegistro49Quadro49;
     FDAORegistro50Quadro50: IJSDimeDAORegistro50Quadro50;
@@ -29,6 +31,7 @@ type
     FDAORegistro82Quadro82: IJSDimeDAORegistro82Quadro82;
     FDAORegistro83Quadro83: IJSDimeDAORegistro83Quadro83;
     FDAORegistro84Quadro84: IJSDimeDAORegistro84Quadro84;
+    FDAORegistro85Quadro85: IJSDimeDAORegistro85Quadro85;
   public
     function AddRegistro20        (Value: IJSDimeDAORegistro20)        : IJSDimeDAOCollection;
     function AddRegistro22Quadro01(Value: IJSDimeDAORegistro22Quadro01): IJSDimeDAOCollection;
@@ -39,6 +42,8 @@ type
     function AddRegistro32Quadro11(Value: IJSDimeDAORegistro32Quadro11): IJSDimeDAOCollection;
     function AddRegistro33Quadro12(Value: IJSDimeDAORegistro33Quadro12): IJSDimeDAOCollection;
     function AddRegistro35Quadro14(Value: IJSDimeDAORegistro35Quadro14): IJSDimeDAOCollection;
+    function AddRegistro36Quadro15(Value: IJSDimeDAORegistro36Quadro15): IJSDimeDAOCollection;
+    function AddRegistro37Quadro16(Value: IJSDimeDAORegistro37Quadro16): IJSDimeDAOCollection;
     function AddRegistro46Quadro46(Value: IJSDimeDAORegistro46Quadro46): IJSDimeDAOCollection;
     function AddRegistro49Quadro49(Value: IJSDimeDAORegistro49Quadro49): IJSDimeDAOCollection;
     function AddRegistro50Quadro50(Value: IJSDimeDAORegistro50Quadro50): IJSDimeDAOCollection;
@@ -47,6 +52,7 @@ type
     function AddRegistro82Quadro82(Value: IJSDimeDAORegistro82Quadro82): IJSDimeDAOCollection;
     function AddRegistro83Quadro83(Value: IJSDimeDAORegistro83Quadro83): IJSDimeDAOCollection;
     function AddRegistro84Quadro84(Value: IJSDimeDAORegistro84Quadro84): IJSDimeDAOCollection;
+    function AddRegistro85Quadro85(Value: IJSDimeDAORegistro85Quadro85): IJSDimeDAOCollection;
 
     function DAORegistro20        : IJSDimeDAORegistro20;
     function DAORegistro22Quadro01: IJSDimeDAORegistro22Quadro01;
@@ -57,6 +63,8 @@ type
     function DAORegistro32Quadro11: IJSDimeDAORegistro32Quadro11;
     function DAORegistro33Quadro12: IJSDimeDAORegistro33Quadro12;
     function DAORegistro35Quadro14: IJSDimeDAORegistro35Quadro14;
+    function DAORegistro36Quadro15: IJSDimeDAORegistro36Quadro15;
+    function DAORegistro37Quadro16: IJSDimeDAORegistro37Quadro16;
     function DAORegistro46Quadro46: IJSDimeDAORegistro46Quadro46;
     function DAORegistro49Quadro49: IJSDimeDAORegistro49Quadro49;
     function DAORegistro50Quadro50: IJSDimeDAORegistro50Quadro50;
@@ -65,6 +73,7 @@ type
     function DAORegistro82Quadro82: IJSDimeDAORegistro82Quadro82;
     function DAORegistro83Quadro83: IJSDimeDAORegistro83Quadro83;
     function DAORegistro84Quadro84: IJSDimeDAORegistro84Quadro84;
+    function DAORegistro85Quadro85: IJSDimeDAORegistro85Quadro85;
 
     function &Begin: IJSDimeDAOCollection;
     function &End: IJSDimeService;
@@ -148,6 +157,20 @@ begin
   FDAORegistro35Quadro14 := Value;
 end;
 
+function TJSDimeServiceCollection.AddRegistro36Quadro15(
+  Value: IJSDimeDAORegistro36Quadro15): IJSDimeDAOCollection;
+begin
+  result                 := Self;
+  FDAORegistro36Quadro15 := Value;
+end;
+
+function TJSDimeServiceCollection.AddRegistro37Quadro16(
+  Value: IJSDimeDAORegistro37Quadro16): IJSDimeDAOCollection;
+begin
+  result                 := Self;
+  FDAORegistro37Quadro16 := Value;
+end;
+
 function TJSDimeServiceCollection.AddRegistro46Quadro46(
   Value: IJSDimeDAORegistro46Quadro46): IJSDimeDAOCollection;
 begin
@@ -202,6 +225,13 @@ function TJSDimeServiceCollection.AddRegistro84Quadro84(
 begin
   result                 := Self;
   FDAORegistro84Quadro84 := Value;
+end;
+
+function TJSDimeServiceCollection.AddRegistro85Quadro85(
+  Value: IJSDimeDAORegistro85Quadro85): IJSDimeDAOCollection;
+begin
+  result                 := Self;
+  FDAORegistro85Quadro85 := Value;
 end;
 
 function TJSDimeServiceCollection.&Begin: IJSDimeDAOCollection;
@@ -259,6 +289,16 @@ begin
   Result := FDAORegistro35Quadro14;
 end;
 
+function TJSDimeServiceCollection.DAORegistro36Quadro15: IJSDimeDAORegistro36Quadro15;
+begin
+  Result := FDAORegistro36Quadro15;
+end;
+
+function TJSDimeServiceCollection.DAORegistro37Quadro16: IJSDimeDAORegistro37Quadro16;
+begin
+  Result := FDAORegistro37Quadro16;
+end;
+
 function TJSDimeServiceCollection.DAORegistro46Quadro46: IJSDimeDAORegistro46Quadro46;
 begin
   Result := FDAORegistro46Quadro46;
@@ -297,6 +337,11 @@ end;
 function TJSDimeServiceCollection.DAORegistro84Quadro84: IJSDimeDAORegistro84Quadro84;
 begin
   Result := FDAORegistro84Quadro84;
+end;
+
+function TJSDimeServiceCollection.DAORegistro85Quadro85: IJSDimeDAORegistro85Quadro85;
+begin
+  Result := FDAORegistro85Quadro85;
 end;
 
 class function TJSDimeServiceCollection.New(

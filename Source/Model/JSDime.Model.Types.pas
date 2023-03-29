@@ -8,6 +8,10 @@ uses
 type
   TJSDimeApuracaoConsolidada = (acNao, acConsolidador, acConsolidado);
 
+  TJSDimeCodigoCalculoFUMDES = (ccfNaoExigido, ccfICMSExonerado2, ccfNenhum);
+
+  TJSDimeCodigoCalculoFundoSocial = (ccfsNaoExigido, ccfsICMSExonerado25, ccfsBcICMSFUMDES04, ccfsBcICMSFundoSocialFUMDES04, ccfsICMSExonerado45, ccfsNenhum);
+
   TJSDimeEscritaContabil = (ecSimEstabelecimentoPrincipal, ecNao, ecSimDadosInformadosEstabelecimentoPrincipal);
 
   TJSDimeMovimento = (mSemMovimentoSemSaldos, mSemMovimentoComSaldos, mComMovimento);
@@ -27,6 +31,20 @@ type
                                  tcApuracaoEreservaCreditoAgropecuario);
 
   TJSDimeApuracaoConsolidadaHelper = record helper for TJSDimeApuracaoConsolidada
+  public
+    function toString: string;
+    procedure fromString(s: string);
+    function Caption: string;
+  end;
+
+  TJSDimeCodigoCalculoFUMDESHelper = record helper for TJSDimeCodigoCalculoFUMDES
+  public
+    function toString: string;
+    procedure fromString(s: string);
+    function Caption: string;
+  end;
+
+  TJSDimeCodigoCalculoFundoSocialHelper = record helper for TJSDimeCodigoCalculoFundoSocial
   public
     function toString: string;
     procedure fromString(s: string);
@@ -303,6 +321,78 @@ end;
 function TJSDimeNaoSeAplicaHelper.toString: string;
 begin
   Result := '1';
+end;
+
+{ TJSDimeCodigoCalculoFUMDESHelper }
+
+function TJSDimeCodigoCalculoFUMDESHelper.Caption: string;
+begin
+  case Self of
+    ccfNaoExigido     : result := 'Não exigido na Portaria SEF 143/22';
+    ccfICMSExonerado2 : result := '2% do ICMS Exonerado';
+    ccfNenhum         : result := 'Nenhum';
+  end;
+end;
+
+procedure TJSDimeCodigoCalculoFUMDESHelper.fromString(s: string);
+begin
+  if s = '0' then
+    Self := ccfNaoExigido
+  else if s = '1' then
+    Self := ccfICMSExonerado2
+  else
+    Self := ccfNenhum;
+end;
+
+function TJSDimeCodigoCalculoFUMDESHelper.toString: string;
+begin
+  case self of
+    ccfNaoExigido     : Result := '0';
+    ccfICMSExonerado2 : Result := '1';
+    ccfNenhum         : Result := '9';
+  end;
+end;
+
+{ TJSDimeCodigoCalculoFundoSocialHelper }
+
+function TJSDimeCodigoCalculoFundoSocialHelper.Caption: string;
+begin
+  case Self of
+    ccfsNaoExigido                : result := 'Não exigido na Portaria SEF 143/22';
+    ccfsICMSExonerado25           : result := '2,5% do ICMS Exonerado';
+    ccfsBcICMSFUMDES04            : result := '0,4% da BC ICMS - FUMDES';
+    ccfsBcICMSFundoSocialFUMDES04 : result := '0,4% da BC ICMS - (Fundo Social + FUMDES)';
+    ccfsICMSExonerado45           : result := '4,5% do ICMS Exonerado';
+    ccfsNenhum                    : result := 'Nenhum';
+  end;
+end;
+
+procedure TJSDimeCodigoCalculoFundoSocialHelper.fromString(s: string);
+begin
+  if s = '0' then
+    Self := ccfsNaoExigido
+  else if s = '1' then
+    Self := ccfsICMSExonerado25
+  else if s = '2' then
+    Self := ccfsBcICMSFUMDES04
+  else if s = '3' then
+    Self := ccfsBcICMSFundoSocialFUMDES04
+  else if s = '4' then
+    Self := ccfsICMSExonerado45
+  else
+    Self := ccfsNenhum;
+end;
+
+function TJSDimeCodigoCalculoFundoSocialHelper.toString: string;
+begin
+  case self of
+    ccfsNaoExigido                : Result := '0';
+    ccfsICMSExonerado25           : Result := '1';
+    ccfsBcICMSFUMDES04            : Result := '2';
+    ccfsBcICMSFundoSocialFUMDES04 : Result := '3';
+    ccfsICMSExonerado45           : Result := '4';
+    ccfsNenhum                    : Result := '9';
+  end;
 end;
 
 end.
