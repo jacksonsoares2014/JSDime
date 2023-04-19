@@ -14,8 +14,6 @@ type
     class function PadL(AValue: String; ATam: Integer; ACaracter: Char): String; overload;
     class function PadR(AValue: Integer; ATam: Integer; ACaracter: Char): String; overload;
     class function PadR(AValue: String; ATam: Integer; ACaracter: Char): String; overload;
-
-//    class function formatNumber  (AValue: Double): string;
   end;
 
   JSDF = class(TJSDimeFormat);

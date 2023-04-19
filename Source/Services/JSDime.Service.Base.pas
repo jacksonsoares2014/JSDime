@@ -3,14 +3,10 @@ unit JSDime.Service.Base;
 interface
 
 uses
-//JSDime.Model.Classes,
-//  GBSped.Model.Types,
-//  JSDime.DAO.Interfaces,
   JSDime.Service.Interfaces,
   JSDime.Service.Config,
   JSDime.Service.Collection,
   JSDime.Service.Emitente,
-//  GBSped.Service.Counter,
   System.SysUtils,
   System.Threading,
   System.Classes,

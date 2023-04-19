@@ -6,6 +6,7 @@ uses
   JSDime.Model.Consts,
   JSDime.Model.Classes,
   JSDime.Model.Types,
+  JSDime.Model.Validator.Interfaces,
   JSDime.Export.Interfaces,
   JSDime.Service.Interfaces,
   JSDime.DAO.Interfaces,
@@ -21,6 +22,8 @@ type
   private
     [Weak]
     FDimeService: IJSDimeService;
+
+    DimeModelValidate : IJSDimeModelValidator;
 
     FacadeExport: IJSDimeExportFacade;
     FArquivo    : TStrings;
@@ -38,12 +41,23 @@ type
     FSegregDebitosSaidasCreditoPresumido : Currency;
 
 
-    FReg24List     : TObjectList<TJSDimeModelRegistro24>;
     FComparerReg24 : IComparer<TJSDimeModelRegistro24>;
     FComparerReg30 : IComparer<TJSDimeModelRegistro30>;
     FComparerReg35 : IComparer<TJSDimeModelRegistro35>;
 
+    FListReg24Quadro03 : TObjectList<TJSDimeModelRegistro24>;
+    FListReg25Quadro04 : TObjectList<TJSDimeModelRegistro25>;
+    FListReg36Quadro15 : TObjectList<TJSDimeModelRegistro36>;
+    FListReg37Quadro16 : TObjectList<TJSDimeModelRegistro37>;
+    FListReg46Quadro46 : TObjectList<TJSDimeModelRegistro46>;
+
     function validateInstance<T: TJSDimeModelRegistro, constructor>(AModel: TJSDimeModelRegistro): Boolean;
+    procedure addDimeReg24;
+    procedure addDimeReg25;
+    procedure addDimeReg36;
+    procedure addDimeReg37;
+    procedure addDimeReg46;
+
     procedure AddReg24(AModel: TJSDimeModelRegistro); overload;
     procedure AddReg24(Item: String; Valor: Currency); overload;
 
@@ -61,21 +75,21 @@ type
     function CalculaSaldoFundoSocialReg37(ListaReg37: TObjectList<TJSDimeModelRegistro37>): Currency;
     procedure TransfSegregacaoReg35(Reg30: TJSDimeModelRegistro30);
 
+    procedure OnLogErro(ALogErro: String);
     procedure OnAddRegistro(Registro: TJSDimeModelRegistro);
     procedure AdicionaLinhaDime(ARegistro: TJSDimeModelRegistro; AArquivo: TStrings);
     procedure GerarReg20;
     procedure GerarReg21Quadro00;
     procedure GerarReg22Quadro01;
     procedure GerarReg23Quadro02;
-    procedure GerarReg24Quadro03(AlistReg24Quadro03: TStrings);
-    procedure GerarReg25Quadro04(AlistReg25Quadro04: TStrings);
+    procedure GerarReg25Quadro04;
     procedure GerarReg26Quadro05;
     procedure GerarReg30Quadro09;
     procedure GerarReg33Quadro12;
     procedure GerarReg35Quadro14;
-    procedure GerarReg36Quadro15(AlistReg36Quadro15: TStrings);
-    procedure GerarReg37Quadro16(AlistReg37Quadro16: TStrings);
-    procedure GerarReg46Quadro46(AlistReg46Quadro46: TStrings);
+    procedure GerarReg36Quadro15;
+    procedure GerarReg37Quadro16;
+    procedure GerarReg46Quadro46;
     procedure GerarReg49Quadro49;
     procedure GerarReg50Quadro50;
     procedure GerarReg80Quadro80;
@@ -157,13 +171,83 @@ begin
     FSegregDebitosSaidasCreditoPresumido := Reg30.valor;
 end;
 
+procedure TJSDimeServiceRegistros.addDimeReg24;
+var
+  i: Integer;
+begin
+  if not Assigned(FListReg24Quadro03) then
+    Exit;
+
+  for i := 0 to Pred(FListReg24Quadro03.Count) do
+  begin
+    AdicionaLinhaDime(FListReg24Quadro03[i], FArquivo);
+    DimeModelValidate.Validate(FListReg24Quadro03[i], FArquivo.Count);
+  end;
+end;
+
+procedure TJSDimeServiceRegistros.addDimeReg25;
+var
+  i: Integer;
+begin
+  if not Assigned(FListReg25Quadro04) then
+    Exit;
+
+  for i := 0 to Pred(FListReg25Quadro04.Count) do
+  begin
+    AdicionaLinhaDime(FListReg25Quadro04[i], FArquivo);
+    DimeModelValidate.Validate(FListReg25Quadro04[i], FArquivo.Count);
+  end;
+end;
+
+procedure TJSDimeServiceRegistros.addDimeReg36;
+var
+  i: Integer;
+begin
+  if not Assigned(FListReg36Quadro15) then
+    Exit;
+
+  for i := 0 to Pred(FListReg36Quadro15.Count) do
+  begin
+    AdicionaLinhaDime(FListReg36Quadro15[i], FArquivo);
+    DimeModelValidate.Validate(FListReg36Quadro15[i], FArquivo.Count);
+  end;
+end;
+
+procedure TJSDimeServiceRegistros.addDimeReg37;
+var
+  i: Integer;
+begin
+  if not Assigned(FListReg37Quadro16) then
+    Exit;
+
+  for i := 0 to Pred(FListReg37Quadro16.Count) do
+  begin
+    AdicionaLinhaDime(FListReg37Quadro16[i], FArquivo);
+    DimeModelValidate.Validate(FListReg37Quadro16[i], FArquivo.Count);
+  end;
+end;
+
+procedure TJSDimeServiceRegistros.addDimeReg46;
+var
+  i: Integer;
+begin
+  if not Assigned(FListReg46Quadro46) then
+    Exit;
+
+  for i := 0 to Pred(FListReg46Quadro46.Count) do
+  begin
+    AdicionaLinhaDime(FListReg46Quadro46[i], FArquivo);
+    DimeModelValidate.Validate(FListReg46Quadro46[i], FArquivo.Count);
+  end;
+end;
+
 procedure TJSDimeServiceRegistros.AddReg24(Item: String; Valor: Currency);
 var
   FReg24: TJSDimeModelRegistro24;
   I : Integer;
 begin
-  if not Assigned(FReg24List) then
-    FReg24List := TObjectList<TJSDimeModelRegistro24>.Create;
+  if not Assigned(FListReg24Quadro03) then
+    FListReg24Quadro03 := TObjectList<TJSDimeModelRegistro24>.Create;
 
   if valor > 0 then
   begin
@@ -171,12 +255,12 @@ begin
     FReg24.item  := Item;
     FReg24.valor := Valor;
 
-    if not FReg24List.BinarySearch(FReg24, I, FComparerReg24) then
-      FReg24List.Insert(I, FReg24)
+    if not FListReg24Quadro03.BinarySearch(FReg24, I, FComparerReg24) then
+      FListReg24Quadro03.Insert(I, FReg24)
     else
     begin
       FreeAndNil(FReg24);
-      FReg24List[I].valor := FReg24List[I].valor + Valor;
+      FListReg24Quadro03[I].valor := FListReg24Quadro03[I].valor + Valor;
     end;
   end;
 end;
@@ -231,7 +315,6 @@ var
 begin
   linhaDime := FacadeExport.linhaDime(ARegistro);
   AArquivo.Add(linhaDime);
-//  Counter.AddCounter(ARegistro);
   OnAddRegistro(ARegistro);
 end;
 
@@ -447,12 +530,13 @@ begin
 
   FacadeExport   := JSDime.Export.Interfaces
                       .FacadeExport(FDimeService.Emitente, FDimeService.Config);
+
+  DimeModelValidate := JSDime.Model.Validator.Interfaces
+                         .DimeModelValidator(FDimeService.Config);
 end;
 
 destructor TJSDimeServiceRegistros.Destroy;
 begin
-  if Assigned(FReg24List) then
-    FReg24List.Free;
 
   inherited;
 end;
@@ -463,20 +547,6 @@ begin
 end;
 
 function TJSDimeServiceRegistros.Execute: TStrings;
-var
-  listReg24Quadro03 : TStringList;
-  listReg25Quadro04 : TStringList;
-  listReg36Quadro15 : TStringList;
-  listReg37Quadro16 : TStringList;
-  listReg46Quadro46 : TStringList;
-
-  procedure addDime(AReg: TStrings);
-  var
-    i : Integer;
-  begin
-    for i := 0 to Pred(AReg.Count) do
-      FArquivo.Add(AReg[i]);
-  end;
 begin
   FValorCreditoEntradas                := 0;
   FValorDebitoSaidas                   := 0;
@@ -490,12 +560,6 @@ begin
   FSegregOutrosCreditos                := 0;
   FSegregDebitosSaidasCreditoPresumido := 0;
 
-  listReg24Quadro03 := TStringList.Create;
-  listReg25Quadro04 := TStringList.Create;
-  listReg36Quadro15 := TStringList.Create;
-  listReg37Quadro16 := TStringList.Create;
-  listReg46Quadro46 := TStringList.Create;
-
   try
     try
       GerarReg20;
@@ -503,25 +567,24 @@ begin
       GerarReg22Quadro01;
       GerarReg23Quadro02;
 
-      GerarReg25Quadro04(listReg25Quadro04);
-      GerarReg24Quadro03(listReg24Quadro03);
-      GerarReg46Quadro46(listReg46Quadro46);
+      GerarReg25Quadro04;
+      GerarReg46Quadro46;
 
-      addDime(listReg24Quadro03);
-      addDime(listReg25Quadro04);
+      addDimeReg24;
+      addDimeReg25;
 
-      GerarReg36Quadro15(listReg36Quadro15);
-      GerarReg37Quadro16(listReg37Quadro16);
+      GerarReg36Quadro15;
+      GerarReg37Quadro16;
 
       GerarReg26Quadro05;
       GerarReg30Quadro09;
       GerarReg33Quadro12;
       GerarReg35Quadro14;
 
-      addDime(listReg36Quadro15);
-      addDime(listReg37Quadro16);
+      addDimeReg36;
+      addDimeReg37;
 
-      addDime(listReg46Quadro46);
+      addDimeReg46;
 
       GerarReg49Quadro49;
       GerarReg50Quadro50;
@@ -541,16 +604,25 @@ begin
       on e: Exception Do
       begin
         FArquivo.Free;
-        //OnLogErro('Houve erro na geração da DIME: ' + e.Message);
+        OnLogErro('Houve erro na geração da DIME: ' + e.Message);
         Raise;
       end;
     end;
   finally
-    listReg24Quadro03.Free;
-    listReg25Quadro04.Free;
-    listReg36Quadro15.Free;
-    listReg37Quadro16.Free;
-    listReg46Quadro46.Free;
+    if Assigned(FListReg24Quadro03) then
+      FListReg24Quadro03.Free;
+
+    if Assigned(FListReg25Quadro04) then
+      FListReg25Quadro04.Free;
+
+    if Assigned(FListReg36Quadro15) then
+      FListReg36Quadro15.Free;
+
+    if Assigned(FListReg37Quadro16) then
+      FListReg37Quadro16.Free;
+
+    if Assigned(FListReg46Quadro46) then
+      FListReg46Quadro46.Free;
   end;
 end;
 
@@ -566,6 +638,7 @@ begin
   reg20 := dao.load;
   try
     AdicionaLinhaDime(reg20, FArquivo);
+    DimeModelValidate.Validate(reg20,FArquivo.Count);
   finally
     reg20.Free;
   end;
@@ -594,6 +667,7 @@ begin
     Reg21Quadro00.quantidadeTrabalhadores      := FDimeService.Config.NumeroTrabalhadores;
 
     AdicionaLinhaDime(Reg21Quadro00, FArquivo);
+    DimeModelValidate.Validate(Reg21Quadro00,FArquivo.Count);
   finally
     Reg21Quadro00.Free;
   end;
@@ -653,27 +727,11 @@ begin
   end;
 end;
 
-procedure TJSDimeServiceRegistros.GerarReg24Quadro03(AlistReg24Quadro03: TStrings);
-var
-  i     : Integer;
-  reg24 : TJSDimeModelRegistro24;
-begin
-  if not Assigned(FReg24List) then
-    Exit;
-
-  for i:= 0 to Pred(FReg24List.Count) do
-  begin
-    reg24 := FReg24List[i];
-    AdicionaLinhaDime(reg24, AlistReg24Quadro03);
-  end;
-end;
-
-procedure TJSDimeServiceRegistros.GerarReg25Quadro04(AlistReg25Quadro04: TStrings);
+procedure TJSDimeServiceRegistros.GerarReg25Quadro04;
 var
   i         : Integer;
   dao       : IJSDimeDAORegistro25Quadro04;
   reg25     : TJSDimeModelRegistro25;
-  reg25List : TObjectList<TJSDimeModelRegistro25>;
   Comparer  : IComparer<TJSDimeModelRegistro25>;
   total     : Currency;
 begin
@@ -681,40 +739,35 @@ begin
 
   dao := FDimeService.DAO.DAORegistro25Quadro04;
   if not Assigned(dao) then
-    reg25List := TObjectList<TJSDimeModelRegistro25>.Create
+    FListReg25Quadro04 := TObjectList<TJSDimeModelRegistro25>.Create
   else
-    reg25List := dao.list(FDimeService.Config.DataInicial);
+    FListReg25Quadro04 := dao.list(FDimeService.Config.DataInicial);
 
-  try
-    Comparer  := TJSDimeModelRegistro25.getComparer;
+  Comparer  := TJSDimeModelRegistro25.getComparer;
 
-    if FValorDebitoSaidas > 0 then
-    begin
-      reg25List.Add(TJSDimeModelRegistro25.create);
-      reg25List.Last.item  := itemQuadro04DebitoSaidas;
-      reg25List.Last.valor := FValorDebitoSaidas;
-    end;
+  if FValorDebitoSaidas > 0 then
+  begin
+    FListReg25Quadro04.Add(TJSDimeModelRegistro25.create);
+    FListReg25Quadro04.Last.item  := itemQuadro04DebitoSaidas;
+    FListReg25Quadro04.Last.valor := FValorDebitoSaidas;
+  end;
 
-    for i:= 0 to Pred(reg25List.Count) do
-      total := total + reg25List[i].valor;
+  for i:= 0 to Pred(FListReg25Quadro04.Count) do
+    total := total + FListReg25Quadro04[i].valor;
 
-    if total > 0 then
-    begin
-      reg25List.Add(TJSDimeModelRegistro25.create);
-      reg25List.Last.item  := itemQuadro04SubTotalDebitos;
-      reg25List.Last.valor := total;
-      FSubTotalDebito      := total;
-    end;
+  if total > 0 then
+  begin
+    FListReg25Quadro04.Add(TJSDimeModelRegistro25.create);
+    FListReg25Quadro04.Last.item  := itemQuadro04SubTotalDebitos;
+    FListReg25Quadro04.Last.valor := total;
+    FSubTotalDebito      := total;
+  end;
 
-    reg25List.Sort(Comparer);
-    for i:= 0 to Pred(reg25List.Count) do
-    begin
-      reg25 := reg25List[i];
-      AdicionaLinhaDime(reg25, AlistReg25Quadro04);
-      AddReg24(reg25);
-    end;
-  finally
-    reg25List.Free;
+  FListReg25Quadro04.Sort(Comparer);
+  for i:= 0 to Pred(FListReg25Quadro04.Count) do
+  begin
+    reg25 := FListReg25Quadro04[i];
+    AddReg24(reg25);
   end;
 end;
 
@@ -826,7 +879,6 @@ var
   dao       : IJSDimeDAORegistro33Quadro12;
   reg33     : TJSDimeModelRegistro33;
   reg33List : TObjectList<TJSDimeModelRegistro33>;
-  FSaldo    : Currency;
 begin
   dao := FDimeService.DAO.DAORegistro33Quadro12;
   if not Assigned(dao) then
@@ -877,10 +929,10 @@ begin
     reg35List := dao.list(FDimeService.Config.DataInicial);
 
   try
-    AddReg35(itemQuadro14DebSaiCredPreSubstCredEnt,           FSegregDebitosSaidasCreditoPresumido, reg35List);  //itemQuadro09SegregDebitosSaidasCreditoPresumido 076
-    AddReg35(itemQuadro14CredPreUtilSubstituicaoCreditosEnt,  FSegregCreditoPresumido             , reg35List);  //itemQuadro09SegregCreditoPresumido              036
-    AddReg35(itemQuadro14CredCompDebUtilCredPre,              FSegregOutrosCreditos               , reg35List);  //itemQuadro09SegregOutrosCreditos                038
-    AddReg35(itemQuadro14CredPagAntecipadoIcms,               FSegregCreditoPagtoAntecipado       , reg35List);  //itemQuadro09SegregCreditoPagtoAntecipado        037
+    AddReg35(itemQuadro14DebSaiCredPreSubstCredEnt,           FSegregDebitosSaidasCreditoPresumido, reg35List);
+    AddReg35(itemQuadro14CredPreUtilSubstituicaoCreditosEnt,  FSegregCreditoPresumido             , reg35List);
+    AddReg35(itemQuadro14CredCompDebUtilCredPre,              FSegregOutrosCreditos               , reg35List);
+    AddReg35(itemQuadro14CredPagAntecipadoIcms,               FSegregCreditoPagtoAntecipado       , reg35List);
 
     AddReg35(itemQuadro14SldDevApropCredPre, CalculaSaldoDevedorApropCredPreReg35(reg35List), reg35List);
     AddReg35(itemQuadro14TotalAntecipacoes,  CalculaTotalAntecipacoesReg35(reg35List), reg35List);
@@ -908,158 +960,135 @@ begin
   end;
 end;
 
-procedure TJSDimeServiceRegistros.GerarReg36Quadro15(AlistReg36Quadro15: TStrings);
+procedure TJSDimeServiceRegistros.GerarReg36Quadro15;
 var
   i         : Integer;
   dao       : IJSDimeDAORegistro36Quadro15;
-  reg36     : TJSDimeModelRegistro36;
-  reg36List : TObjectList<TJSDimeModelRegistro36>;
   reg36Total: TJSDimeModelRegistro36;
 begin
   dao := FDimeService.DAO.DAORegistro36Quadro15;
   if not Assigned(dao) then
-    reg36List := TObjectList<TJSDimeModelRegistro36>.Create
+    FListReg36Quadro15 := TObjectList<TJSDimeModelRegistro36>.Create
   else
-    reg36List := dao.listReg36(FDimeService.Config.DataInicial);
+    FListReg36Quadro15 := dao.listReg36(FDimeService.Config.DataInicial);
 
   reg36Total := TJSDimeModelRegistro36.Create;
-  try
-    reg36Total.sequencia                     := 999;
-    reg36Total.codigoBeneficioTTD            := '9999';
-    reg36Total.numeroConcessaoTTD            := '999999999999999';
-    reg36Total.subtipoDCIPsemExigenciaTTD    := '9999';
-    reg36Total.codigoCalculoFUMDES           := ccfNenhum;
-    reg36Total.codigoCalculoFundoSocial      := ccfsNenhum;
-    reg36Total.valorBaseCalculoICMS          := 0;
-    reg36Total.valorICMSExonerado            := 0;
-    reg36Total.valorFUMDES                   := 0;
-    reg36Total.valorFundoSocial              := 0;
-    reg36Total.valorBaseCalculoICMSDevolucao := 0;
-    reg36Total.valorICMSExoneradoDevolucao   := 0;
-    reg36Total.valorFUMDESDevolucao          := 0;
-    reg36Total.valorFundoSocialDevolucao     := 0;
+  reg36Total.sequencia                     := 999;
+  reg36Total.codigoBeneficioTTD            := '9999';
+  reg36Total.numeroConcessaoTTD            := '999999999999999';
+  reg36Total.subtipoDCIPsemExigenciaTTD    := '9999';
+  reg36Total.codigoCalculoFUMDES           := ccfNenhum;
+  reg36Total.codigoCalculoFundoSocial      := ccfsNenhum;
+  reg36Total.valorBaseCalculoICMS          := 0;
+  reg36Total.valorICMSExonerado            := 0;
+  reg36Total.valorFUMDES                   := 0;
+  reg36Total.valorFundoSocial              := 0;
+  reg36Total.valorBaseCalculoICMSDevolucao := 0;
+  reg36Total.valorICMSExoneradoDevolucao   := 0;
+  reg36Total.valorFUMDESDevolucao          := 0;
+  reg36Total.valorFundoSocialDevolucao     := 0;
 
-    for i:= 0 to Pred(reg36List.Count) do
-    begin
-      reg36Total.valorBaseCalculoICMS          := reg36Total.valorBaseCalculoICMS          + reg36List[i].valorBaseCalculoICMS;
-      reg36Total.valorICMSExonerado            := reg36Total.valorICMSExonerado            + reg36List[i].valorICMSExonerado           ;
-      reg36Total.valorFUMDES                   := reg36Total.valorFUMDES                   + reg36List[i].valorFUMDES                  ;
-      reg36Total.valorFundoSocial              := reg36Total.valorFundoSocial              + reg36List[i].valorFundoSocial             ;
-      reg36Total.valorBaseCalculoICMSDevolucao := reg36Total.valorBaseCalculoICMSDevolucao + reg36List[i].valorBaseCalculoICMSDevolucao;
-      reg36Total.valorICMSExoneradoDevolucao   := reg36Total.valorICMSExoneradoDevolucao   + reg36List[i].valorICMSExoneradoDevolucao  ;
-      reg36Total.valorFUMDESDevolucao          := reg36Total.valorFUMDESDevolucao          + reg36List[i].valorFUMDESDevolucao         ;
-      reg36Total.valorFundoSocialDevolucao     := reg36Total.valorFundoSocialDevolucao     + reg36List[i].valorFundoSocialDevolucao    ;
-    end;
-
-    if reg36List.Count > 0 then
-      reg36List.Add(reg36Total);
-
-    for i:= 0 to Pred(reg36List.Count) do
-    begin
-      reg36 := reg36List[i];
-      AdicionaLinhaDime(reg36, AlistReg36Quadro15);
-    end;
-  finally
-    reg36List.Free;
+  for i:= 0 to Pred(FListReg36Quadro15.Count) do
+  begin
+    reg36Total.valorBaseCalculoICMS          := reg36Total.valorBaseCalculoICMS          + FListReg36Quadro15[i].valorBaseCalculoICMS;
+    reg36Total.valorICMSExonerado            := reg36Total.valorICMSExonerado            + FListReg36Quadro15[i].valorICMSExonerado           ;
+    reg36Total.valorFUMDES                   := reg36Total.valorFUMDES                   + FListReg36Quadro15[i].valorFUMDES                  ;
+    reg36Total.valorFundoSocial              := reg36Total.valorFundoSocial              + FListReg36Quadro15[i].valorFundoSocial             ;
+    reg36Total.valorBaseCalculoICMSDevolucao := reg36Total.valorBaseCalculoICMSDevolucao + FListReg36Quadro15[i].valorBaseCalculoICMSDevolucao;
+    reg36Total.valorICMSExoneradoDevolucao   := reg36Total.valorICMSExoneradoDevolucao   + FListReg36Quadro15[i].valorICMSExoneradoDevolucao  ;
+    reg36Total.valorFUMDESDevolucao          := reg36Total.valorFUMDESDevolucao          + FListReg36Quadro15[i].valorFUMDESDevolucao         ;
+    reg36Total.valorFundoSocialDevolucao     := reg36Total.valorFundoSocialDevolucao     + FListReg36Quadro15[i].valorFundoSocialDevolucao    ;
   end;
+
+  if FListReg36Quadro15.Count > 0 then
+    FListReg36Quadro15.Add(reg36Total);
 end;
 
-procedure TJSDimeServiceRegistros.GerarReg37Quadro16(AlistReg37Quadro16: TStrings);
+procedure TJSDimeServiceRegistros.GerarReg37Quadro16;
 var
-  i         : Integer;
   dao       : IJSDimeDAORegistro37Quadro16;
-  reg37     : TJSDimeModelRegistro37;
-  reg37List : TObjectList<TJSDimeModelRegistro37>;
   Comparer  : IComparer<TJSDimeModelRegistro37>;
   FSaldoFUMDES,
   FSaldoFundoSocial : Currency;
 begin
   dao := FDimeService.DAO.DAORegistro37Quadro16;
   if not Assigned(dao) then
-    reg37List := TObjectList<TJSDimeModelRegistro37>.Create
+    FListReg37Quadro16 := TObjectList<TJSDimeModelRegistro37>.Create
   else
-    reg37List := dao.listReg37;
+    FListReg37Quadro16 := dao.listReg37;
 
-  try
-    FSaldoFUMDES      := CalculaSaldoFUMDESReg37(reg37List);
+  FSaldoFUMDES      := CalculaSaldoFUMDESReg37(FListReg37Quadro16);
 
-    if FSaldoFUMDES >= 0 then
-    begin
-      reg37List.Add(TJSDimeModelRegistro37.create);
-      reg37List.Last.item  := itemQuadro16FUMDESRecolher;
-      reg37List.Last.valor := FSaldoFUMDES;
-    end;
+  if FSaldoFUMDES >= 0 then
+  begin
+    FListReg37Quadro16.Add(TJSDimeModelRegistro37.create);
+    FListReg37Quadro16.Last.item  := itemQuadro16SaldoCredorMesSeguinteFUMDES;
+    FListReg37Quadro16.Last.valor := 0;
 
-    if FSaldoFUMDES < 0 then
-    begin
-      reg37List.Add(TJSDimeModelRegistro37.create);
-      reg37List.Last.item  := itemQuadro16SaldoCredorMesSeguinteFUMDES;
-      reg37List.Last.valor := Abs(FSaldoFUMDES);
-    end;
-
-    FSaldoFundoSocial := CalculaSaldoFundoSocialReg37(reg37List);
-
-    if FSaldoFundoSocial >= 0 then
-    begin
-      reg37List.Add(TJSDimeModelRegistro37.create);
-      reg37List.Last.item  := itemQuadro16FUNDOSOCIALRecolher;
-      reg37List.Last.valor := FSaldoFundoSocial;
-    end;
-
-    if FSaldoFundoSocial < 0 then
-    begin
-      reg37List.Add(TJSDimeModelRegistro37.create);
-      reg37List.Last.item  := itemQuadro16SaldoCredorMesSeguinteFUNDOSOCIAL;
-      reg37List.Last.valor := Abs(FSaldoFundoSocial);
-    end;
-
-    Comparer := TJSDimeModelRegistro37.getComparer;
-    reg37List.Sort(Comparer);
-
-    for i:= 0 to Pred(reg37List.Count) do
-    begin
-      reg37 := reg37List[i];
-      AdicionaLinhaDime(reg37, AlistReg37Quadro16);
-    end;
-  finally
-    reg37List.Free;
+    FListReg37Quadro16.Add(TJSDimeModelRegistro37.create);
+    FListReg37Quadro16.Last.item  := itemQuadro16FUMDESRecolher;
+    FListReg37Quadro16.Last.valor := FSaldoFUMDES;
   end;
+
+  if FSaldoFUMDES < 0 then
+  begin
+    FListReg37Quadro16.Add(TJSDimeModelRegistro37.create);
+    FListReg37Quadro16.Last.item  := itemQuadro16SaldoCredorMesSeguinteFUMDES;
+    FListReg37Quadro16.Last.valor := Abs(FSaldoFUMDES);
+
+    FListReg37Quadro16.Add(TJSDimeModelRegistro37.create);
+    FListReg37Quadro16.Last.item  := itemQuadro16FUMDESRecolher;
+    FListReg37Quadro16.Last.valor := 0;
+  end;
+
+  FSaldoFundoSocial := CalculaSaldoFundoSocialReg37(FListReg37Quadro16);
+
+  if FSaldoFundoSocial >= 0 then
+  begin
+    FListReg37Quadro16.Add(TJSDimeModelRegistro37.create);
+    FListReg37Quadro16.Last.item  := itemQuadro16SaldoCredorMesSeguinteFUNDOSOCIAL;
+    FListReg37Quadro16.Last.valor := 0;
+
+    FListReg37Quadro16.Add(TJSDimeModelRegistro37.create);
+    FListReg37Quadro16.Last.item  := itemQuadro16FUNDOSOCIALRecolher;
+    FListReg37Quadro16.Last.valor := FSaldoFundoSocial;
+  end;
+
+  if FSaldoFundoSocial < 0 then
+  begin
+    FListReg37Quadro16.Add(TJSDimeModelRegistro37.create);
+    FListReg37Quadro16.Last.item  := itemQuadro16SaldoCredorMesSeguinteFUNDOSOCIAL;
+    FListReg37Quadro16.Last.valor := Abs(FSaldoFundoSocial);
+
+    FListReg37Quadro16.Add(TJSDimeModelRegistro37.create);
+    FListReg37Quadro16.Last.item  := itemQuadro16FUNDOSOCIALRecolher;
+    FListReg37Quadro16.Last.valor := 0;
+  end;
+
+  Comparer := TJSDimeModelRegistro37.getComparer;
+  FListReg37Quadro16.Sort(Comparer);
 end;
 
-procedure TJSDimeServiceRegistros.GerarReg46Quadro46(AlistReg46Quadro46: TStrings);
+procedure TJSDimeServiceRegistros.GerarReg46Quadro46;
 var
   i         : Integer;
   dao       : IJSDimeDAORegistro46Quadro46;
-  reg46List : TObjectList<TJSDimeModelRegistro46>;
-  reg46     : TJSDimeModelRegistro46;
 begin
   dao := FDimeService.DAO.DAORegistro46Quadro46;
   if not Assigned(dao) then
     Exit;
 
-  reg46List := dao.list(FDimeService.Config.DataInicial);
-  try
-    for i:= 0 to Pred(reg46List.Count) do
-    begin
-      reg46 := reg46List[i];
-      AdicionaLinhaDime(reg46, AlistReg46Quadro46);
-      FCreditosDeclaradosDCIP := FCreditosDeclaradosDCIP + reg46.valor;
-    end;
+  FListReg46Quadro46 := dao.list(FDimeService.Config.DataInicial);
+  for i:= 0 to Pred(FListReg46Quadro46.Count) do
+    FCreditosDeclaradosDCIP := FCreditosDeclaradosDCIP + FListReg46Quadro46[i].valor;
 
-    if FCreditosDeclaradosDCIP > 0 then
-    begin
-      reg46 := TJSDimeModelRegistro46.create;
-      try
-        reg46.sequencia := 990;
-        reg46.valor     := FCreditosDeclaradosDCIP;
-        AdicionaLinhaDime(reg46, AlistReg46Quadro46);
-      finally
-        reg46.Free;
-      end;
-    end;
-
-  finally
-    reg46List.Free;
+  if FCreditosDeclaradosDCIP > 0 then
+  begin
+    FListReg46Quadro46.Add(TJSDimeModelRegistro46.create);
+    FListReg46Quadro46.Last.sequencia     := 990;
+    FListReg46Quadro46.Last.identificacao := '0';
+    FListReg46Quadro46.Last.origem        := '0';
+    FListReg46Quadro46.Last.valor         := FCreditosDeclaradosDCIP;
   end;
 end;
 
@@ -1290,17 +1319,20 @@ begin
     onAddRegistro(Registro);
 end;
 
+procedure TJSDimeServiceRegistros.OnLogErro(ALogErro: String);
+var
+  onLogErro: TOnLogErro;
+begin
+  onLogErro := FDimeService.Config.OnLogErro;
+
+  if Assigned(onLogErro) then
+    OnLogErro(ALogErro);
+end;
+
 function TJSDimeServiceRegistros.validateInstance<T>(
   AModel: TJSDimeModelRegistro): Boolean;
-var
-  model: T;
 begin
-  model := T.create;
-  try
-    Result := (AModel is T);
-  finally
-    model.free;
-  end;
+  Result := (AModel is T);
 end;
 
 end.

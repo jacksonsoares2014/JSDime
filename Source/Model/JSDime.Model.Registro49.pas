@@ -4,6 +4,7 @@ interface
 
 uses
   JSDime.Model.Registro,
+  JSDime.Model.Attributes,
   System.Generics.Defaults;
 
 type
@@ -16,15 +17,25 @@ type
     FpetroleEnergia          : Currency;
     fsubstituicaoTributaria  : Currency;
   public
+    [Obrigatorio('Unidade da Federação')]
     property siglaEstado             : string   read FsiglaEstado            write FsiglaEstado;
+
+    [ValorPositivo('Valor Contábil')]
     property valorContabil           : Currency read FvalorContabil          write FvalorContabil;
+
+    [ValorPositivo('Base de Cálculo')]
     property baseCalculo             : Currency read FbaseCalculo            write FbaseCalculo;
+
+    [ValorPositivo('Valor Outros')]
     property outras                  : Currency read Foutras                 write Foutras;
+
+    [ValorPositivo('Valor Petóleo/Energia Elétrica')]
     property petroleEnergia          : Currency read FpetroleEnergia         write FpetroleEnergia;
+
+    [ValorPositivo('Valor Substituição Tributária')]
     property substituicaoTributaria  : Currency read fsubstituicaoTributaria write fsubstituicaoTributaria;
 
     class function getComparer: IComparer<TJSDimeModelRegistro49>;
-
     constructor create; override;
     destructor  Destroy; override;
   end;

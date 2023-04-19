@@ -3,6 +3,9 @@ unit JSDime.Model.Consts;
 interface
 
 const
+  cLogErrCampoObrigatorio = 'Linha %d: Reg. %s Quadro %s - O campo %s é obrigatório e não teve seu valor informado.';
+  cLogErrValorPositivo    = 'Linha %d: Reg. %s Quadro %s - O campo %s deve ser maior ou igual a 0.';
+
   cfopNaoContribuinte     = '6107_6108_5258_6258_5307_6307_5357_6357';
   cCfopCredRessarcimentos = '1601_1602_1603_1605_2603';
   cCfopOpAtivoImob        = '1406_1551_1552_1553_1554_1555_1604_2406_2551_2552_2553_2554_2555_3551_3553';
@@ -80,14 +83,14 @@ const
   itemQuadro09SaldoCredorOutrosCreditos           = '190';
 
   itemQuadro14BaseSaidaCredPre                    = '010';
-  itemQuadro14DebSaiCredPreSubstCredEnt           = '020';  //itemQuadro09SegregDebitosSaidasCreditoPresumido 076
-  itemQuadro14CredPreUtilSubstituicaoCreditosEnt  = '030';  //itemQuadro09SegregCreditoPresumido              036
-  itemQuadro14CredCompDebUtilCredPre              = '031';  //itemQuadro09SegregOutrosCreditos                038
+  itemQuadro14DebSaiCredPreSubstCredEnt           = '020';
+  itemQuadro14CredPreUtilSubstituicaoCreditosEnt  = '030';
+  itemQuadro14CredCompDebUtilCredPre              = '031';
   itemQuadro14SldDevApropCredPre                  = '040';
   itemQuadro14DebUtilCredPreReceb                 = '045';
   itemQuadro14DebExtCredPre                       = '050';
   itemQuadro14SldCredorMesAnt                     = '110';
-  itemQuadro14CredPagAntecipadoIcms               = '120';  //itemQuadro09SegregCreditoPagtoAntecipado        037
+  itemQuadro14CredPagAntecipadoIcms               = '120';
   itemQuadro14TotalAntecipacoes                   = '130';
   itemQuadro14DebUtilCredPreTransf                = '150';
   itemQuadro14SaldoCredorAntecipacoesMesSeguinte  = '198';

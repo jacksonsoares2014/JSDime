@@ -4,6 +4,7 @@ interface
 
 uses
   System.Generics.Defaults,
+  JSDime.Model.Attributes,
   JSDime.Model.Registro;
 
 type
@@ -12,12 +13,14 @@ type
     Fvalor: Currency;
     Fitem : String;
   public
+    [Obrigatorio('Item')]
     property item : String   read Fitem  write Fitem;
+
+    [ValorPositivo('Valor')]
     property valor: Currency read Fvalor write Fvalor;
 
     class function getComparer: IComparer<TJSDimeModelRegistro85>;
     class function Caption(Reg :TJSDimeModelRegistro85): string;
-
     constructor create; override;
     destructor  Destroy; override;
   end;

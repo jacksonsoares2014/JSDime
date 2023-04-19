@@ -3,13 +3,19 @@ unit JSDime.Model.Registro20;
 interface
 
 uses
+  JSDime.Model.Attributes,
   JSDime.Model.Registro;
 
 type
   TJSDimeModelRegistro20 = class(TJSDimeModelRegistro)
   private
+    [Obrigatorio('CPF do Contador')]
     Fcpf             : String;
+
+    [Obrigatorio('Nome do Contador')]
     FnomeContabilista: String;
+
+    [Obrigatorio('DataHora da geração do arquivo')]
     FdataHora        : String;
   public
     property cpf              : String    read Fcpf              write Fcpf;
@@ -29,24 +35,5 @@ begin
   reg    := '20';
   quadro := '  ';
 end;
-
-//class function TJSDimeModelRegistro20.getComparer: IComparer<TGBSpedModelRegistroNomeDoModel>;
-//begin
-//  result := TComparer<TGBSpedModelRegistroNomeDoModel>.Construct(
-//    function(const Left, Right: TGBSpedModelRegistroNomeDoModel): Integer
-//    var LChave, RChave: string;
-//    begin
-//      LChave := '';
-//
-//      RChave := '';
-//
-//      if LChave < RChave then
-//        Result := -1
-//      else if LChave > RChave then
-//        Result := 1
-//      else
-//        Result := 0;
-//    end);
-//end;
 
 end.

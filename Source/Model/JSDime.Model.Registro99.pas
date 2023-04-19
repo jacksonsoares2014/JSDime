@@ -3,6 +3,7 @@ unit JSDime.Model.Registro99;
 interface
 
 uses
+  JSDime.Model.Attributes,
   JSDime.Model.Registro;
 
 type
@@ -11,7 +12,12 @@ type
     FqtdReg         : Integer;
     FqtdDeclaracoes : Integer;
   public
+    [Obrigatorio('Quantidade de Registros no Arquivo')]
+    [ValorPositivo('Quantidade de Registros no Arquivo')]
     property qtdReg        : Integer read FqtdReg         write FqtdReg;
+
+    [Obrigatorio('Quantidade de Declarações')]
+    [ValorPositivo('Quantidade de Declarações')]
     property qtdDeclaracoes: Integer read FqtdDeclaracoes write FqtdDeclaracoes;
 
     constructor create; override;

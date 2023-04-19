@@ -3,6 +3,7 @@ unit JSDime.Model.Registro33;
 interface
 
 uses
+  JSDime.Model.Attributes,
   JSDime.Model.Registro;
 
 type
@@ -15,10 +16,19 @@ type
     FclasseVencimento              : string;
     FnumeroAcordo                  : string;
   public
+    [Obrigatorio('Origem do Recolhimento')]
     property origemRecolhimento            : string     read ForigemRecolhimento   write ForigemRecolhimento;
+
+    [Obrigatorio('Código da Receita')]
     property codigoReceita                 : string     read FcodigoReceita        write FcodigoReceita;
+
+    [Obrigatorio('Data de Vencimento')]
     property dataVencimento                : TDateTime  read FdataVencimento       write FdataVencimento;
+
+    [Obrigatorio('Valor')]
+    [ValorPositivo('Valor')]
     property valor                         : Currency   read Fvalor                write Fvalor;
+
     property classeVencimento              : string     read FclasseVencimento     write FclasseVencimento;
     property numeroAcordo                  : string     read FnumeroAcordo         write FnumeroAcordo;
 

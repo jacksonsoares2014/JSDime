@@ -3,6 +3,7 @@ unit JSDime.Model.Registro23;
 interface
 
 uses
+  JSDime.Model.Attributes,
   JSDime.Model.Registro,
   System.Generics.Defaults,
   System.SysUtils;
@@ -19,13 +20,28 @@ type
     FbaseCalculoImpostoRetido      : Currency;
     FimpostoRetido                 : Currency;
   public
+    [Obrigatorio('CFOP')]
     property cfop                          : string    read Fcfop                      write Fcfop;
+
+    [ValorPositivo('Valor Contábil')]
     property valorContabil                 : Currency  read FvalorContabil             write FvalorContabil;
+
+    [ValorPositivo('Base de Cálculo')]
     property baseCalculo                   : Currency  read FbaseCalculo               write FbaseCalculo;
+
+    [ValorPositivo('Imposto Debitado')]
     property impostoDebitado               : Currency  read FimpostoDebitado           write FimpostoDebitado;
+
+    [ValorPositivo('Valor Isento ou Não Tributado')]
     property isentasNaoTributadas          : Currency  read FisentasNaoTributadas      write FisentasNaoTributadas;
+
+    [ValorPositivo('Valor Outros')]
     property outras                        : Currency  read Foutras                    write Foutras;
+
+    [ValorPositivo('Base de Cálculo do Imposto Retido')]
     property baseCalculoImpostoRetido      : Currency  read FbaseCalculoImpostoRetido  write FbaseCalculoImpostoRetido;
+
+    [ValorPositivo('Imposto Retido')]
     property impostoRetido                 : Currency  read FimpostoRetido             write FimpostoRetido;
 
     class function getComparer: IComparer<TJSDimeModelRegistro23>;

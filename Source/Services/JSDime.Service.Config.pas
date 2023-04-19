@@ -27,6 +27,7 @@ type
     FGerarRelatorio         : Boolean;
     FUtilizaSoCredDCIP      : Boolean;
     FOnAddRegistro          : TOnDimeAddRegistro;
+    FOnLogErro              : TOnLogErro;
 
   public
     function DataInicial            (Value: TDateTime)                                         : IJSDimeConfig<I>; overload;
@@ -57,14 +58,11 @@ type
     function GerarRelatorio         : Boolean                                           overload;
     function UtilizaSoCredDCIP      : Boolean;                                          overload;
 
-//    function OnStatus(Value: TOnDimeStatus): IJSDimeConfig<I>; overload;
-//    function OnStatus: TOnDimeStatus; overload;
-
     function OnAddRegistro(Value: TOnDimeAddRegistro): IJSDimeConfig<I>; overload;
     function OnAddRegistro: TOnDimeAddRegistro; overload;
 
-//    function OnLogErro(Value: TOnLogErro): IJSDimeConfig<I>; overload;
-//    function OnLogErro: TOnLogErro; overload;
+    function OnLogErro(Value: TOnLogErro): IJSDimeConfig<I>; overload;
+    function OnLogErro: TOnLogErro; overload;
 
     function &Begin: IJSDimeConfig<I>;
     function &End: I;
@@ -189,6 +187,17 @@ end;
 function TJSDimeServiceConfig<I>.OnAddRegistro: TOnDimeAddRegistro;
 begin
   Result := FOnAddRegistro;
+end;
+
+function TJSDimeServiceConfig<I>.OnLogErro: TOnLogErro;
+begin
+  Result := FOnLogErro;
+end;
+
+function TJSDimeServiceConfig<I>.OnLogErro(Value: TOnLogErro): IJSDimeConfig<I>;
+begin
+  result := Self;
+  FOnLogErro := Value;
 end;
 
 function TJSDimeServiceConfig<I>.OnAddRegistro(

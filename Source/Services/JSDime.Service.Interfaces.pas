@@ -12,6 +12,7 @@ uses
 
 type
   TOnDimeAddRegistro = reference to procedure (Registro: TJSDimeModelRegistro);
+  TOnLogErro = reference to procedure (ALogErro: String);
 
   IJSDimeConfig<I: IInterface> = interface;
   IJSDimeDAOCollection = interface;
@@ -66,6 +67,9 @@ type
     function OnAddRegistro(Value: TOnDimeAddRegistro): IJSDimeConfig<I>; overload;
     function OnAddRegistro: TOnDimeAddRegistro; overload;
 
+    function OnLogErro(Value: TOnLogErro): IJSDimeConfig<I>; overload;
+    function OnLogErro: TOnLogErro; overload;
+
     function &Begin: IJSDimeConfig<I>;
     function &End: I;
   end;
@@ -85,7 +89,6 @@ type
     function AddRegistro37Quadro16(Value: IJSDimeDAORegistro37Quadro16): IJSDimeDAOCollection;
     function AddRegistro46Quadro46(Value: IJSDimeDAORegistro46Quadro46): IJSDimeDAOCollection;
 
-//    function AddRegistro47Quadro47(Value: IJSDimeDAORegistro47Quadro47): IJSDimeDAOCollection;
     function AddRegistro49Quadro49(Value: IJSDimeDAORegistro49Quadro49): IJSDimeDAOCollection;
     function AddRegistro50Quadro50(Value: IJSDimeDAORegistro50Quadro50): IJSDimeDAOCollection;
     function AddRegistro80Quadro80(Value: IJSDimeDAORegistro80Quadro80): IJSDimeDAOCollection;
@@ -108,7 +111,6 @@ type
     function DAORegistro37Quadro16: IJSDimeDAORegistro37Quadro16;
     function DAORegistro46Quadro46: IJSDimeDAORegistro46Quadro46;
 
-//    function DAORegistro47Quadro47: IJSDimeDAORegistro47Quadro47;
     function DAORegistro49Quadro49: IJSDimeDAORegistro49Quadro49;
     function DAORegistro50Quadro50: IJSDimeDAORegistro50Quadro50;
     function DAORegistro80Quadro80: IJSDimeDAORegistro80Quadro80;
@@ -142,11 +144,6 @@ type
 
 function DimeServiceFactory: IJSDimeServiceFactory;
 function DimeService: IJSDimeService;
-
-//////////////////
-//  IJSDimeServiceRegistro24Quadro03
-//IJSDimeServiceRegistro35Quadro14
-
 
 implementation
 

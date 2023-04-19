@@ -3,6 +3,7 @@ unit JSDime.Model.Registro47;
 interface
 
 uses
+  JSDime.Model.Attributes,
   JSDime.Model.Registro;
 
 type
@@ -11,7 +12,11 @@ type
     FcodigoMunicipio : string;
     Fvalor           : Currency;
   public
+    [Obrigatorio('Código do Município')]
     property codigoMunicipio  : string     read FcodigoMunicipio  write FcodigoMunicipio;
+
+    [Obrigatorio('Valor')]
+    [ValorPositivo('Valor')]
     property valor            : Currency   read Fvalor            write Fvalor;
 
     constructor create; override;

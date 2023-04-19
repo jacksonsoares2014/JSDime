@@ -3,6 +3,7 @@ unit JSDime.Model.Registro46;
 interface
 
 uses
+  JSDime.Model.Attributes,
   JSDime.Model.Registro;
 
 type
@@ -13,9 +14,17 @@ type
     Fvalor          : Currency;
     Forigem         : string;
   public
+    [Obrigatorio('Sequência')]
     property sequencia      : Integer    read Fsequencia      write Fsequencia;
+
+    [Obrigatorio('Identificação')]
     property identificacao  : string     read Fidentificacao  write Fidentificacao;
+
+    [Obrigatorio('Valor')]
+    [ValorPositivo('Valor')]
     property valor          : Currency   read Fvalor          write Fvalor;
+
+    [Obrigatorio('Origem')]
     property origem         : string     read Forigem         write Forigem;
 
     constructor create; override;
